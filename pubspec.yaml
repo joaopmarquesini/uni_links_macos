@@ -1,0 +1,19 @@
+name: uni_links_macos
+description: Flutter plugin for accepting incoming links - Universal Links and Custom URL schemes (macOS).
+version: 0.1.4
+author: João Paulo Marquesini <jao+unilinks@markezine.me>
+homepage: https://github.com/joaopmarquesini/uni_links_macos
+
+flutter:
+  plugin:
+    platforms:
+      macos:
+        pluginClass: UniLinksPlugin
+
+environment: 
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
