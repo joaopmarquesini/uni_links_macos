@@ -48,7 +48,7 @@ You need to declare at least one of the two.
 
 For **Universal Links** you need to add or create a
 `com.apple.developer.associated-domains` entitlement - either through Xcode or
-by editing (or creating and adding to Xcode) `ios/Runner/Runner.entitlements`
+by editing (or creating and adding to Xcode) `macos/Runner/DebugProfile.entitlements` and `macos/Runner/Release.entitlements`
 file.
 
 ```xml
@@ -74,7 +74,7 @@ For more information, read Apple's guide for
 --
 
 For **Custom URL schemes** you need to declare the scheme in
-`ios/Runner/Info.plist` (or through Xcode's Target Info editor,
+`macos/Runner/Info.plist` (or through Xcode's Target Info editor,
 under URL Types):
 
 ```xml
@@ -247,41 +247,6 @@ initial link (or URI) and also subscribe for a Stream of links (or URIs).
 ## Tools for invoking links
 
 If you register a schema, say `unilink`, you could use these cli tools:
-
-### Android
-
-You could do below tasks within [Android Studio](https://developer.android.com/studio/write/app-link-indexing#testindent).
-
-Assuming you've installed Android Studio (with the SDK platform tools):
-
-```sh
-adb shell 'am start -W -a android.intent.action.VIEW -c android.intent.category.BROWSABLE -d "unilinks://host/path/subpath"'
-adb shell 'am start -W -a android.intent.action.VIEW -c android.intent.category.BROWSABLE -d "unilinks://example.com/path/portion/?uid=123&token=abc"'
-adb shell 'am start -W -a android.intent.action.VIEW -c android.intent.category.BROWSABLE -d "unilinks://example.com/?arr%5b%5d=123&arr%5b%5d=abc&addr=1%20Nowhere%20Rd&addr=Rand%20City%F0%9F%98%82"'
-```
-
-If you don't have [`adb`](https://developer.android.com/studio/command-line/adb)
-in your path, but have `$ANDROID_HOME` env variable then use
-`"$ANDROID_HOME"/platform-tools/adb ...`.
-
-Note: Alternatively you could simply enter an `adb shell` and run the
-[`am`](https://developer.android.com/studio/command-line/adb#am) commands in it.
-
-Note: I use single quotes, because what follows the `shell` command is what will
-run in the emulator (or device) and shell metacharacters, such as question marks
-(`?`) and ampersands (`&`), usually mean something different to your own shell.
-
-`adb shell` communicates with the only available device (or emulator), so if
-you've got multiple devices you have to specify which one you want to run the
-shell in via:
-
-  * The _only_ USB connected device - `adb -d shell '...'`
-  * The _only_ emulated device - `adb -e shell '...'`
-
-You could use `adb devices` to list currently available devices (similarly
-`flutter devices` does the same job).
-
-### iOS
 
 Assuming you've got Xcode already installed:
 
